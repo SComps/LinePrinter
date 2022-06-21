@@ -1,6 +1,5 @@
 ﻿Imports System.Drawing.Printing
 Imports System.Drawing.Printing.PrinterSettings
-Imports System.Drawing
 Imports System.IO
 Imports System.Windows.Media
 Imports nsoftware.IPWorks
@@ -320,8 +319,8 @@ Public Class Form1
                     StatusUpdate(myPrinters.IndexOf(p), ls.ONLINE, "Settling stream")
                     Dim myIndex As Integer = myPrinters.IndexOf(p)
                     Idlers(myIndex) += 1
-                    MonitorLog(String.Format("Waiting for stream to settle on printer {0} ({1} of 5)", myIndex, Idlers(myIndex)))
-                    If Idlers(myIndex) >= 5 Then
+                    MonitorLog(String.Format("Waiting for stream to settle on printer {0} ({1} of 3)", myIndex, Idlers(myIndex)))
+                    If Idlers(myIndex) >= 3 Then
                         StatusUpdate(myPrinters.IndexOf(p), ls.ONLINE, "Spooling job")
                         Dim thisData As String = GetNewData(p.Stream, p.LastMaxOffset)
                         MonitorLog(String.Format("Printing {0} bytes on device {1}", thisData.Length, p.Name))
@@ -395,9 +394,9 @@ Public Class Form1
 
 
         linesPerPage = ev.MarginBounds.Height / printFont.GetHeight
-        MonitorLog("Setting lines per page to " & linesPerPage.ToString)
+
         If linesPerPage > 66 Then
-            MonitorLog("Forcing 66 lines per page.")
+
             linesPerPage = 66
         End If
 

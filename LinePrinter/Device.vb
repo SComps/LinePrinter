@@ -1,6 +1,5 @@
 ﻿Imports System.Drawing.Printing
 Imports System.IO
-Imports System.Threading
 
 Public Class Device
     ' This class handles individual printers
